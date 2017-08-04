@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby -wU
+require 'p4_changes'
+P4Changes::CLI.start(ARGV)
