@@ -1,8 +1,11 @@
 # P4Changes
+### Build Status
+[![Build Status](https://travis-ci.org/gscho/p4_changes.png)](https://travis-ci.org/gscho/p4_changes)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/p4_changes`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem will list all files changed at a perforce depot location and write
+the unique file names to a file.
 
-TODO: Delete this and the text above, and describe your gem
+NOTE: The Perforce `p4` command must be available.
 
 ## Installation
 
