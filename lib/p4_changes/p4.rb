@@ -10,10 +10,10 @@ module P4Changes
 
     def format()
       if !@from.eql? '' then
-        @from = @from.prepend('@') << ','
+        @from = @from.dup.prepend('@') << ','
       end
       if !@to.eql? '#head' then
-        @to = @to.prepend('@')
+        @to = @to.dup.prepend('@')
       end
     end
 
@@ -28,6 +28,7 @@ module P4Changes
     end
 
     def get_changed_files(changelist_arr)
+      num_files = 0
       changelist_arr
       .map { |num|
         result = `p4 -Ztag -F "%depotFile%" files @=#{num}`.split( /\n/ )
@@ -43,7 +44,7 @@ module P4Changes
       d = Time.now.strftime('%Y-%m-%d_%H-%M-%S')
       depot = @depot.tr('/', '')
       STDOUT.write "\nWriting unique filenames to \e[36m#{depot}-#{d}.txt\e[0m"
-      File.open("#{depot}-#{d}.txt", 'w') {|f| f.puts(files)}
+      File.open("#{depot}-#{d}.txt", 'w') {|f| f.puts(filenames)}
     end
   end
 end
