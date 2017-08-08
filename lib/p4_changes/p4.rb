@@ -8,7 +8,7 @@ module P4Changes
       self.format
     end
 
-    def format()
+    def format
       if !@from.eql? '' then
         @from = @from.dup.prepend('@') << ','
       end
@@ -17,7 +17,7 @@ module P4Changes
       end
     end
 
-    def get_changelists()
+    def get_changelists
       changelists = `p4 changes #{@depot}...#{@from}#{@to}`.split( /\n/ )
       changelists = changelists
       .reduce([]) { |arr,change|
@@ -27,7 +27,7 @@ module P4Changes
       changelists
     end
 
-    def get_changed_files(changelist_arr)
+    def get_changed_files changelist_arr
       num_files = 0
       changelist_arr
       .map { |num|
@@ -40,7 +40,7 @@ module P4Changes
       .uniq
     end
 
-    def write_files(filenames)
+    def write_files filenames
       d = Time.now.strftime('%Y-%m-%d_%H-%M-%S')
       depot = @depot.tr('/', '')
       STDOUT.write "\nWriting unique filenames to \e[36m#{depot}-#{d}.txt\e[0m"
